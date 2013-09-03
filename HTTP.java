@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Formatter;
-import javax.net.ssl.HttpsURLConnection;
+//import javax.net.ssl.HttpsURLConnection;
 import java.util.ArrayList;
 import java.net.*;
 
@@ -55,7 +55,7 @@ public class HTTP {
 	private String http_post(String token, String rms_id) throws Exception {
  		String url = "http://nextmicrosoftceo.com/";
 		URL obj = new URL(url);
-		HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
  
 		//add reuqest header
 		con.setRequestMethod("POST");
