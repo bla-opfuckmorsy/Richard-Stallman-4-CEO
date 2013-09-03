@@ -13,12 +13,14 @@ public class HTTP {
 	public static void main(String[] args) throws Exception {
  
 		HTTP http = new HTTP();
-		http.http_req("http://nextmicrosoftceo.com/home/candidate/746d3602-0b8d-49bd-b2d7-c238409a40c9");
+		String data = http.http_req("http://nextmicrosoftceo.com/home/candidate/746d3602-0b8d-49bd-b2d7-c238409a40c9");
+ 		http.http_post(http.getToken(data),http.getRMS_ID(data));
+ 
  
 	}
  
 	// HTTP GET request
-	private void http_req(String url) throws Exception {
+	private String http_req(String url) throws Exception {
 	 
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -42,11 +44,48 @@ public class HTTP {
 			response.append(inputLine);
 		}
 		in.close();
- 
-		//print result
-		System.out.println(response.toString());
+		
+		return response.toString();
 		
 	}
+	//dunno if this even works in the slightest
+	private String http_post(String token, String rms_id) throws Exception {
+ 		String url = "http://nextmicrosoftceo.com/"
+		URL obj = new URL(url);
+		HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+ 
+		//add reuqest header
+		con.setRequestMethod("POST");
+		con.setRequestProperty("User-Agent", USER_AGENT);
+		con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+ 
+		String urlParameters = "__RequestVerificationToken="+token+"&id="+rmd_id;
+ 
+		// Send post request
+		con.setDoOutput(true);
+		DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+		wr.writeBytes(urlParameters);
+		wr.flush();
+		wr.close();
+ 
+		int responseCode = con.getResponseCode();
+		//debugging ftw
+		System.out.println("Response Code : " + responseCode);
+ 
+		BufferedReader in = new BufferedReader(
+		        new InputStreamReader(con.getInputStream()));
+		String inputLine;
+		StringBuffer response = new StringBuffer();
+ 
+		while ((inputLine = in.readLine()) != null) {
+			response.append(inputLine);
+		}
+		in.close();
+ 
+
+		return response.toString();
+ 
+	}	
 	
 	String getRMS_ID(String input)
 	{
