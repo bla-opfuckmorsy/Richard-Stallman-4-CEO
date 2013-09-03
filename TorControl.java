@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.net.Socket;
 import java.net.InetAddress;
 import java.io.InputStream;
@@ -7,13 +8,13 @@ public class TorControl{
 	private Socket sock;
 	String password;
 	
-	TorControl(INetAddress addr, int port, String password)
+	TorControl(InetAddress addr, int port, String password) throws IOException
 	{
 		sock = new Socket(addr, port);
 		this.password = password;
 	}
 	
-	public boolean newIP()
+	public boolean newIP() throws IOException
 	{
 		String response;
 	
@@ -25,7 +26,7 @@ public class TorControl{
 		os.close();
 		
 		InputStream is = sock.getInputStream();
-		byte[] inbytes;
+		byte[] inbytes = new byte[0];
 		is.read(inbytes);
 		response = new String(inbytes);
 	
