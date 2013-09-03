@@ -13,7 +13,7 @@ public class HTTP {
 	public static void main(String[] args) throws Exception {
  
 		HTTP http = new HTTP();
-		http.http_req("http://www.google.com");
+		http.http_req("http://nextmicrosoftceo.com/home/candidate/746d3602-0b8d-49bd-b2d7-c238409a40c9");
  
 	}
  
@@ -46,7 +46,40 @@ public class HTTP {
 		//print result
 		System.out.println(response.toString());
 		
+	}
+	
+	String getRMS_ID(String input)
+	{
+		String rms_id;
 		
+		rms_id = input.split("<input type=\"hidden\" value=\"")[1].split("\"")[0];
+		
+		return rms_id;
+	}
+	
+	String getToken(String input)
+	{
+		String token;
+		
+		token = input.split("__RequestVerificationToken")[1].split("value=\"")[1].split('"')[0];
+		
+		return token;
+	}
+	
+	String[] getMuhCookies(URLConnection niggerzits)
+	{
+		ArrayList<String> Nigs = new ArrayList<String>();
+		String current;
+		
+		for(int i = 1; (current = niggerzits.getHeaderFieldKey(i)) != null; i++)
+		{
+			if(current.equals("Set-Cookie"))
+			{
+				Nigs.add(niggerzits.getHeaderField(i));
+			}
+		}
+		
+		return Nigs.toArray(new String[Nigs.size()]);
 	}
 }
  
