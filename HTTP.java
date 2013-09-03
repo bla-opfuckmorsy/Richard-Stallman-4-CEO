@@ -50,7 +50,7 @@ public class HTTP {
 	}
 	//dunno if this even works in the slightest
 	private String http_post(String token, String rms_id) throws Exception {
- 		String url = "http://nextmicrosoftceo.com/"
+ 		String url = "http://nextmicrosoftceo.com/";
 		URL obj = new URL(url);
 		HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
  
