@@ -5,6 +5,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Formatter;
 import javax.net.ssl.HttpsURLConnection;
+import java.util.ArrayList;
+import java.net.*;
+
 
 public class HTTP {
  
