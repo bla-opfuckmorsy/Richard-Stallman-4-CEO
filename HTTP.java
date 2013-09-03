@@ -62,7 +62,7 @@ public class HTTP {
 		con.setRequestProperty("User-Agent", USER_AGENT);
 		con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
  
-		String urlParameters = "__RequestVerificationToken="+token+"&id="+rmd_id;
+		String urlParameters = "__RequestVerificationToken="+token+"&id="+rms_id;
  
 		// Send post request
 		con.setDoOutput(true);
@@ -103,7 +103,7 @@ public class HTTP {
 	{
 		String token;
 		
-		token = input.split("__RequestVerificationToken")[1].split("value=\"")[1].split('"')[0];
+		token = input.split("__RequestVerificationToken")[1].split("value=\"")[1].split("\"")[0];
 		
 		return token;
 	}
